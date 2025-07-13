@@ -1,10 +1,15 @@
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-        Father a = new Son();
-        a.say();            //对于普通成员方法，调用的是Son类的say方法，说明普通成员方法被子类成功重写了
-        a.action();         //对于类静态方法，调用的是Father类的action方法，这说明子类虽然有一个方法名与父类一模一样的静态方法，但是并不算子类重写了父类的该方法
+        String s1 = "abc";
+        String s2 = "bac";
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
     }
 }
 

@@ -16,11 +16,11 @@ public class LeetCode977 {
         int[] newArr = new int[nums.length];
         //逆向放入新数组，因为平方后最大值一定在最两边
         for (int i = newArr.length - 1; i >= 0; i--) {
-            if((nums[left]*nums[left])>(nums[right]*nums[right])){
-                newArr[i]=nums[left]*nums[left];
+            if ((nums[left] * nums[left]) > (nums[right] * nums[right])) {
+                newArr[i] = nums[left] * nums[left];
                 left++;
-            }else{
-                newArr[i]=nums[right]*nums[right];
+            } else {
+                newArr[i] = nums[right] * nums[right];
                 right--;
             }
         }
@@ -80,5 +80,28 @@ public class LeetCode977 {
         }
         return newArr;
 
+    }
+
+    //复习
+    public static int[] sortedSquares_Review(int[] nums) {
+        int[] result = new int[nums.length];
+        //左指针
+        int left = 0;
+        //右指针
+        int right = nums.length-1;
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            int leftPow = nums[left]*nums[left];
+            int rightPow = nums[right]*nums[right];
+            if(leftPow>rightPow){
+                result[i]=leftPow;
+                left++;
+            }else {
+                result[i]=rightPow;
+                right--;
+            }
+        }
+
+        return result;
     }
 }

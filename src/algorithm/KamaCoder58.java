@@ -9,6 +9,29 @@ public class KamaCoder58 {
 
     }
 
+    //复习
+    public static void subArrSum_Review(){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        //前缀和
+        int[] preSum = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i]=sc.nextInt();
+            if(i!=0){
+                preSum[i] = preSum[i-1]+arr[i];
+            }else {
+                preSum[i] = arr[i];
+            }
+        }
+        while(sc.hasNextInt()){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            System.out.println(preSum[b] - preSum[a] + arr[a]);
+        }
+
+    }
+
     public static void subArrSum() {
         //前缀和
         Scanner sc = new Scanner(System.in);

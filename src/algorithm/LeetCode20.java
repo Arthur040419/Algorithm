@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 //20.有效的括号
@@ -78,6 +80,23 @@ public class LeetCode20 {
             return false;
         }
         return true;
+    }
+
+    //复习
+    public boolean isValid_My1(String s) {
+        Deque<Character> stack = new LinkedList<>();
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i)=='{'){
+                stack.push('}');
+            }else if(s.charAt(i)=='['){
+                stack.push(']');
+            }else if(s.charAt(i)=='('){
+                stack.push(')');
+            }else {
+                if(stack.isEmpty()||stack.pop()!=s.charAt(i)) return false;
+            }
+        }
+        return stack.isEmpty();
     }
 
 }

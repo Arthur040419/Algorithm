@@ -28,4 +28,24 @@ public class LeetCode209 {
         if(rs==Integer.MAX_VALUE) return 0;
         return rs;
     }
+
+    //复习
+    public int minSubArrayLen_Review(int target, int[] nums) {
+        int slow = 0;
+        int fast = 0;
+        int minLen = Integer.MAX_VALUE;
+        int sum = 0;
+        int count = 0;
+        for (fast = 0; fast < nums.length; fast++) {
+            sum+=nums[fast];
+            count++;
+            while (sum>=target){
+                minLen = Math.min(minLen,count);
+                sum-=nums[slow++];
+                count--;
+            }
+        }
+        if(minLen==Integer.MAX_VALUE) return 0;
+        return minLen;
+    }
 }
