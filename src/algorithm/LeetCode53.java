@@ -24,13 +24,13 @@ public class LeetCode53 {
     //复习
     public int maxSubArray_Review(int[] nums) {
         int result = Integer.MIN_VALUE;
+        //当前的子数组之和
         int curSum = 0;
         for (int i = 0; i < nums.length; i++) {
-            curSum+=nums[i];
-            result = Math.max(result,curSum);
-            if(curSum<0) curSum = 0;
+            curSum += nums[i];
+            result = Math.max(result, curSum);
+            if (curSum < 0) curSum = 0;
         }
-        
         return result;
     }
 }
