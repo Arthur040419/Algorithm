@@ -30,31 +30,66 @@ public class LeetCode160 {
             lenB++;
             curB = curB.next;
         }
-        curB=headB;
+        curB = headB;
 
         //尾部对齐
         //如果链表A长
-        if(lenA>lenB){
-            for (int i = 0; i < lenA-lenB; i++) {
-                curA=curA.next;
+        if (lenA > lenB) {
+            for (int i = 0; i < lenA - lenB; i++) {
+                curA = curA.next;
             }
         }
         //如果链表B长
-        if(lenA<lenB){
-            for (int i = 0; i < lenB-lenA; i++) {
-                curB=curB.next;
+        if (lenA < lenB) {
+            for (int i = 0; i < lenB - lenA; i++) {
+                curB = curB.next;
             }
         }
 
         //尾部对齐后开始寻找链表相交的起始节点
-        while(curA!=null){
-            if(curA==curB){
+        while (curA != null) {
+            if (curA == curB) {
                 return curA;
-            }else{
-                curA=curA.next;
-                curB=curB.next;
+            } else {
+                curA = curA.next;
+                curB = curB.next;
             }
         }
         return null;
+    }
+
+
+    //复习
+    public ListNode getIntersectionNode_Review(ListNode headA, ListNode headB) {
+        //计算两个链表的长度
+        int len1 = 0;
+        int len2 = 0;
+        ListNode tmp = headA;
+        while (tmp != null) {
+            len1++;
+            tmp = tmp.next;
+        }
+        tmp = headB;
+        while (tmp != null) {
+            len2++;
+            tmp = tmp.next;
+        }
+
+        if (len1 > len2) {
+            for (int i = 0; i < len1 - len2; i++) {
+                headA = headA.next;
+            }
+        } else {
+            for (int i = 0; i < len2-len1; i++) {
+                headB = headB.next;
+            }
+        }
+
+        while (headA!=headB){
+            headA = headA.next;
+            headB = headB.next;
+        }
+
+        return headA;
     }
 }

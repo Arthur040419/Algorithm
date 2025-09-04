@@ -16,7 +16,3 @@ public class TXMain {
 }
 
 
-class ListNode{
-    int val;
-    ListNode next;
-}

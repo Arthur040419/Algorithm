@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-        String s1 = "abc";
-        String s2 = "bac";
-        System.out.println(s1.hashCode());
-        System.out.println(s2.hashCode());
+        int[] arr = new int[]{1,2,3,4,5};
+        System.out.println(Arrays.toString(Arrays.copyOfRange(arr, 0, 1)));
+
+
     }
 }
 
