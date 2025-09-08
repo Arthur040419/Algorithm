@@ -42,6 +42,7 @@ public class LeetCode394 {
                     stack.push(tmp.toString());
                 }
             } else if ('0' <= c.charAt(0) && c.charAt(0) <= '9') {
+                //数字可能不止一位
                 number.append(c);
             } else {
                 if (!number.isEmpty()) {
