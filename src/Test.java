@@ -6,8 +6,12 @@ import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-        int[] arr = new int[]{1,2,3,4,5};
-        System.out.println(Arrays.toString(Arrays.copyOfRange(arr, 0, 1)));
+//        int[] arr = new int[]{1,2,3,4,5};
+//        System.out.println(Arrays.toString(Arrays.copyOfRange(arr, 0, 1)));
+
+        int a = 1;
+        int b = 3;
+        System.out.println(1 & 3);
 
 
     }
