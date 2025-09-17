@@ -37,4 +37,26 @@ public class LeetCode3 {
 
         return result;
     }
+
+    //复习-2025-09-15
+    public int lengthOfLongestSubstring_Review(String s) {
+        if(s==null||s.isEmpty()){
+            return 0;
+        }
+        int left = 0;
+        int right = 0;
+        int maxLen = 0;
+        Set<Character> set = new HashSet<>();
+        while (left < s.length()) {
+            while (right < s.length() && !set.contains(s.charAt(right))) {
+                set.add(s.charAt(right));
+                right++;
+            }
+            int curLen = right-left;
+            maxLen = Math.max(maxLen,curLen);
+            set.remove(s.charAt(left));
+            left++;
+        }
+        return maxLen;
+    }
 }

@@ -11,7 +11,7 @@ public class LeetCode46 {
 
     public List<List<Integer>> permute(int[] nums) {
         boolean[] used = new boolean[nums.length];
-        backtracking(nums,used);
+        backtracking(nums, used);
         return result;
     }
 
@@ -23,6 +23,31 @@ public class LeetCode46 {
          */
 
         //终止条件，当path的长度刚好为数组长度时就找到了一种排列
+        if (path.size() == nums.length) {
+            result.add(new ArrayList<>(path));
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (!used[i]) {
+                path.add(nums[i]);
+                used[i] = true;
+                backtracking(nums, used);
+                //回溯
+                used[i] = false;
+                path.remove(path.size() - 1);
+            }
+        }
+    }
+
+    //复习
+    public List<List<Integer>> permute_Review(int[] nums) {
+        boolean[] used = new boolean[nums.length];
+        backtracking_Review(nums, used);
+        return result;
+    }
+
+    public void backtracking_Review(int[] nums, boolean[] used) {
+
         if(path.size()==nums.length){
             result.add(new ArrayList<>(path));
         }
@@ -31,11 +56,12 @@ public class LeetCode46 {
             if(!used[i]){
                 path.add(nums[i]);
                 used[i] = true;
-                backtracking(nums,used);
+                backtracking_Review(nums,used);
                 //回溯
-                used[i]=false;
+                used[i] = false;
                 path.remove(path.size()-1);
             }
         }
+
     }
 }

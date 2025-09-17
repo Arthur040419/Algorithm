@@ -41,6 +41,27 @@ public class LeetCode239 {
         return res;
     }
 
+    //复习
+    public static int[] maxSlidingWindow_Review(int[] nums, int k) {
+        int[] result = new int[nums.length - k + 1];
+        Queue<Integer> queue = new LinkedList<>();
+        //初始化单调队列
+        for (int i = 0; i < k; i++) {
+            while (!queue.isEmpty() && queue.peek() < nums[i]) {
+                queue.poll();
+            }
+            queue.add(nums[i]);
+        }
+
+        //滑动窗口开始移动
+        for (int i = 1; i < nums.length - k + 1; i++) {
+            int remove = nums[i-1];     //移除的元素
+            int add = nums[i+k-1];        //新元素
+
+        }
+        return null;
+    }
+
 
     public int[] maxSlidingWindow_My(int[] nums, int k) {
         /**

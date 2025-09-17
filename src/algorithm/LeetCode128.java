@@ -38,4 +38,26 @@ public class LeetCode128 {
 
         return maxLen;
     }
+
+    //复习
+    public int longestConsecutive_Review(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        int ans = 0;
+        for (Integer num : set) {
+            if(set.contains(num-1)){
+                //当前num不是起点
+                continue;
+            }
+            int curLen = 0;
+            while (set.contains(num+curLen)){
+                curLen++;
+            }
+            ans = Math.max(ans,curLen);
+        }
+        return ans;
+    }
 }

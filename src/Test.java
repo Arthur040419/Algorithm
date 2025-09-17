@@ -1,15 +1,34 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-        String s1 = "abc";
-        String s2 = "bac";
-        System.out.println(s1.hashCode());
-        System.out.println(s2.hashCode());
+
+    }
+
+    public static String getTeam(String students){
+        int start = 0;
+        int maxLen = 0;
+        int curLen = 0;
+        Set<Character> set = new HashSet<>();
+        int left = 0;
+        int right = 0;
+        while(right<students.length()){
+            if(!set.contains(students.charAt(right))){
+                set.add(students.charAt(right));
+                curLen++;
+                if(curLen>maxLen){
+                    start = left;
+                    maxLen = curLen;
+                }
+                right++;
+            }else{
+                set.remove(students.charAt(left));
+                left++;
+                curLen--;
+            }
+        }
+        return students.substring(start,start+maxLen);
     }
 }
 
