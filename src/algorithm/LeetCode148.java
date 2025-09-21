@@ -71,4 +71,62 @@ public class LeetCode148 {
 
     }
 
+
+    //复习-2025-09-17
+    public ListNode sortList_Review(ListNode head) {
+        return mergeSort_Review(head, null);
+    }
+
+    //包前不包后
+    public ListNode mergeSort_Review(ListNode start, ListNode end) {
+        if (start == end) {
+            return null;
+        }
+
+        if (start.next == end) {
+            return new ListNode(start.val);
+        }
+
+        //寻找中间节点
+        ListNode mid = getMid_Review(start, end);
+        ListNode head1 = mergeSort_Review(start, mid);
+        ListNode head2 = mergeSort_Review(mid, end);
+
+        //合并
+        ListNode dummy = new ListNode();
+        ListNode cur = dummy;
+        while (head1 != null && head2 != null) {
+            if (head1.val > head2.val) {
+                cur.next = new ListNode(head2.val);
+                head2 = head2.next;
+                cur = cur.next;
+            } else {
+                cur.next = new ListNode(head1.val);
+                head1 = head1.next;
+                cur = cur.next;
+            }
+        }
+
+        if(head1!=null){
+            cur.next = head1;
+        }
+        if(head2!=null){
+            cur.next = head2;
+        }
+
+        return dummy.next;
+    }
+
+    public ListNode getMid_Review(ListNode start, ListNode end) {
+        ListNode slow = start;
+        ListNode fast = start;
+        while (fast != end) {
+            fast = fast.next;
+            if (fast != end) {
+                fast = fast.next;
+            }
+            slow = slow.next;
+        }
+        return slow;
+    }
 }

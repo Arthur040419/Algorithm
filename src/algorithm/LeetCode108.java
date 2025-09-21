@@ -28,4 +28,22 @@ public class LeetCode108 {
         return root;
     }
 
+
+    //复习-2025-09-19
+    public TreeNode sortedArrayToBST_Review(int[] nums) {
+        return getBinaryTreeRoot(nums,0,nums.length);
+    }
+
+    //包前不包后
+    public TreeNode getBinaryTreeRoot(int[] nums,int start,int end){
+        if(start>=end){
+            return null;
+        }
+        int mid = (start+end)/2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = getBinaryTreeRoot(nums,start,mid);
+        root.right = getBinaryTreeRoot(nums,mid+1,end);
+        return root;
+    }
+
 }

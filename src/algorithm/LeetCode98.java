@@ -25,6 +25,23 @@ public class LeetCode98 {
         return left && right;
 
     }
+
+    //复习-2025-09-20
+    public boolean isValidBST_Review(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        boolean left = isValidBST_Review(root.left);
+        if (max != null && max.val >= root.val) {       //严格大于
+            return false;
+        }
+        max = root;
+        boolean right = isValidBST_Review(root.right);
+
+        return left && right;
+    }
+
 }
 
 //这个代码存在问题，但是问题还没有找到
@@ -53,7 +70,8 @@ class Solution_Error {
     private boolean isValidBSTSolution(TreeNode root) {
         if (root == null) return true;
         boolean left = isValidBSTSolution(root.left);
-        if (root.val > maxVal) {
+        //if (root.val > maxVal) {            //2025-09-20找到原，因为这行代码，最开始初始化的最大值为最左下角的节点值，那么在判断时先到达的也是左下角节点，此时节点值和maxVal是相等的
+        if (root.val >= maxVal) {       //但是修改成大于等于也没法通过全部测试用例，比如2、2、2
             maxVal = root.val;
         } else {
             return false;

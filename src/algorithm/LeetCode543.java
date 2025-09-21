@@ -21,7 +21,7 @@ public class LeetCode543 {
     }
 
     public int getMaxPath(TreeNode root) {
-        if(root==null){
+        if (root == null) {
             return 0;
         }
         int L = getMaxPath(root.left);
@@ -29,6 +29,24 @@ public class LeetCode543 {
 
         result = result < L + R ? L + R : result;
         return (L < R ? R : L) + 1;
+    }
+
+    //复习-2025-09-19
+    public int diameterOfBinaryTree_Review(TreeNode root) {
+        getMaxPath_Review(root);
+        return result;
+    }
+
+    public int getMaxPath_Review(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int L = getMaxPath_Review(root.left);
+        int R = getMaxPath_Review(root.right);
+
+//        result = Math.max(result, L + R + 1);     //这里不需要加1，因为定义的直径是两个节点之间的边数而不是节点数
+        result = Math.max(result,L+R);
+        return L > R ? L + 1 : R + 1;
     }
 
 }

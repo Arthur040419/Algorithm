@@ -2,6 +2,10 @@ package algorithm;
 
 import dataStructure.TreeNode;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 //230.二叉搜索树中第 K 小的元素
 public class LeetCode230 {
 
@@ -18,19 +22,19 @@ public class LeetCode230 {
          */
 
         int L = getNodeCount(root.left);
-        if(L==k-1){
+        if (L == k - 1) {
             return root.val;
-        }else if(L>k-1){
-            return kthSmallest(root.left,k);
-        }else {
-            return kthSmallest(root.right,k-L-1);
+        } else if (L > k - 1) {
+            return kthSmallest(root.left, k);
+        } else {
+            return kthSmallest(root.right, k - L - 1);
         }
 
     }
 
     //获取某个树的节点个数
     public int getNodeCount(TreeNode node) {
-        if(node==null){
+        if (node == null) {
             return 0;
         }
         //算上本身
@@ -43,6 +47,27 @@ public class LeetCode230 {
         }
 
         return result;
+    }
+
+
+    //复习-2025-09-20
+    public int kthSmallest_Review(TreeNode root, int k) {
+        Deque<TreeNode> stack = new LinkedList<>();
+        int ans = 0;
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            k--;
+            if(k==0){
+                ans = root.val;
+                break;
+            }
+            root = root.right;
+        }
+        return ans;
     }
 
 }

@@ -29,13 +29,34 @@ public class LeetCode236 {
             rightRes = lowestCommonAncestor(root.right, p, q);
         }
         //如果左右子树的返回结果都不为空，说明当前节点就是最近公共祖先
-        if(leftRes!=null&&rightRes!=null){
+        if (leftRes != null && rightRes != null) {
             return root;
         }
         //处理根节点,如果找到了目标值
-        if(root.val==p.val||root.val==q.val) return root;
+        if (root.val == p.val || root.val == q.val) return root;
+
+        if (leftRes == null) return rightRes;
+        return leftRes;
+    }
+
+    //复习-2025-09-20
+    public TreeNode lowestCommonAncestor_Review(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode leftRes = lowestCommonAncestor_Review(root.left, p, q);
+        TreeNode rightRes = lowestCommonAncestor_Review(root.right, p, q);
+        if (leftRes != null && rightRes != null) {
+            return root;
+        }
+
+        if(root.val==p.val||root.val==q.val){
+            return root;
+        }
 
         if(leftRes==null) return rightRes;
         return leftRes;
+
     }
 }

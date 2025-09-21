@@ -2,6 +2,7 @@ package algorithm;
 
 import dataStructure.TreeNode;
 
+import javax.swing.plaf.InsetsUIResource;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -21,7 +22,7 @@ public class LeetCode114 {
          *
          */
 
-        if(root==null){
+        if (root == null) {
             return;
         }
 
@@ -29,24 +30,50 @@ public class LeetCode114 {
         //前驱节点
         TreeNode prev = null;
         nodeStack.push(root);
-        while (!nodeStack.isEmpty()){
+        while (!nodeStack.isEmpty()) {
             TreeNode curNode = nodeStack.pop();
 
-            if(prev!=null){
-                prev.left=null;
+            if (prev != null) {
+                prev.left = null;
                 prev.right = curNode;
             }
 
-            if(curNode.right!=null){
-                nodeStack.push(curNode.right);      
+            if (curNode.right != null) {
+                nodeStack.push(curNode.right);
             }
 
-            if(curNode.left!=null){
+            if (curNode.left != null) {
                 nodeStack.push(curNode.left);
             }
 
             //别忘了修改前驱节点为当前节点
             prev = curNode;
+        }
+
+    }
+
+    //复习-2025-09-20
+    public void flatten_Review(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+        TreeNode prev = null;
+        TreeNode cur = null;
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            if (prev != null) {
+                prev.left = null;
+                prev.right = cur;
+            }
+            if(cur.right!=null){
+                stack.push(cur.right);
+            }
+            if(cur.left!= null){
+                stack.push(cur.left);
+            }
+            prev = cur;
         }
 
     }
