@@ -5,6 +5,10 @@ import dataStructure.ListNode;
 
 //234.回文链表
 public class LeetCode234 {
+
+    //递归做法
+    ListNode fontNode;
+
     public boolean isPalindrome(ListNode head) {
         ListNode mid = getMid(head);
         //获取后半部分链表的头节点
@@ -46,6 +50,26 @@ public class LeetCode234 {
             curNode = tmpNode;
         }
         return preNode;
+    }
+
+    //复习-2025-09-17  新思路-递归
+    public boolean isPalindrome_Review(ListNode head) {
+        fontNode = head;
+        return isPalindromeCheck(head);
+    }
+
+    public boolean isPalindromeCheck(ListNode node) {
+        if (node != null) {
+            if(!isPalindromeCheck(node.next)){
+                return false;
+            }
+            if(node.val!=fontNode.val){
+                return false;
+            }
+
+            fontNode = fontNode.next;
+        }
+        return true;
     }
 
 }

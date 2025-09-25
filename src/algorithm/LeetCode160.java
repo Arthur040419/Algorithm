@@ -30,31 +30,46 @@ public class LeetCode160 {
             lenB++;
             curB = curB.next;
         }
-        curB=headB;
+        curB = headB;
 
         //尾部对齐
         //如果链表A长
-        if(lenA>lenB){
-            for (int i = 0; i < lenA-lenB; i++) {
-                curA=curA.next;
+        if (lenA > lenB) {
+            for (int i = 0; i < lenA - lenB; i++) {
+                curA = curA.next;
             }
         }
         //如果链表B长
-        if(lenA<lenB){
-            for (int i = 0; i < lenB-lenA; i++) {
-                curB=curB.next;
+        if (lenA < lenB) {
+            for (int i = 0; i < lenB - lenA; i++) {
+                curB = curB.next;
             }
         }
 
         //尾部对齐后开始寻找链表相交的起始节点
-        while(curA!=null){
-            if(curA==curB){
+        while (curA != null) {
+            if (curA == curB) {
                 return curA;
-            }else{
-                curA=curA.next;
-                curB=curB.next;
+            } else {
+                curA = curA.next;
+                curB = curB.next;
             }
         }
         return null;
     }
+
+    //复习-2025-09-17
+    public ListNode getIntersectionNode_Review(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode curA = headA;
+        ListNode curB = headB;
+        while (curA != curB) {
+            curA = curA == null ? headB : curA.next;
+            curB = curB == null ?headA:curB.next;
+        }
+        return curA;
+    }
+
 }

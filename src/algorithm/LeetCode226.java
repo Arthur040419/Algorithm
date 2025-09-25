@@ -37,4 +37,24 @@ public class LeetCode226 {
         invertSolution1(root.left);
         invertSolution1(root.right);
     }
+
+    //复习-2025-09-18
+    public TreeNode invertTree_Review(TreeNode root) {
+        if(root==null) return root;
+        return invertTreeSolution_Review(root);
+    }
+
+    public TreeNode invertTreeSolution_Review(TreeNode root){
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        if(root.left!=null){
+            invertTreeSolution_Review(root.left);
+        }
+        if(root.right!=null){
+            invertTreeSolution_Review(root.right);
+        }
+
+        return root;
+    }
 }

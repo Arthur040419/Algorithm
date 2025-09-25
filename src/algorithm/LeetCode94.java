@@ -38,6 +38,26 @@ public class LeetCode94 {
         inOrder_1(root.right, result);
     }
 
+    //复习-2025-09-18
+    public List<Integer> inorderTraversal_Review(TreeNode root) {
+        if(root==null){
+            return Collections.EMPTY_LIST;
+        }
+        List<Integer> result = new ArrayList<>();
+        inorder_Review(root,result);
+        return  result;
+    }
+
+    public void inorder_Review(TreeNode root,List<Integer> result){
+        if (root.left!=null){
+            inorder_Review(root.left,result);
+        }
+        result.add(root.val);
+        if(root.right!=null){
+            inorder_Review(root.right,result);
+        }
+    }
+
 
     /**
      * 迭代法
@@ -101,6 +121,31 @@ public class LeetCode94 {
                 result.add(cur.val);
             }
 
+        }
+        return result;
+    }
+
+    //复习-统一迭代法-2025-09-18
+    public List<Integer> inorderTraversal_All_Review(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if(root!=null) stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            if(node!=null){
+                if(node.right!=null){
+                    stack.push(node.right);
+                }
+                stack.push(node);
+                stack.push(null);
+                if(node.left!=null){
+                    stack.push(node.left);
+                }
+
+            }else {
+                node = stack.pop();
+                result.add(node.val);
+            }
         }
         return result;
     }
