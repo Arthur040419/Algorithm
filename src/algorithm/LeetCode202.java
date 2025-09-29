@@ -47,16 +47,37 @@ public class LeetCode202 {
             record.add(n);
             n = nextNumber(n);
         }
-        return n==1;
+        return n == 1;
     }
 
     public int nextNumber(int n) {
         //该方法返回n的每位的平方和
         int sum = 0;
         while (n > 0) {
-            int tmp = n%10;
-            sum+=tmp*tmp;
-            n/=10;
+            int tmp = n % 10;
+            sum += tmp * tmp;
+            n /= 10;
+        }
+        return sum;
+    }
+
+    //复习-2025-09-29
+    public boolean isHappy_Review(int n) {
+        Set<Integer> record = new HashSet<>();
+        while (n != 1 && !record.contains(n)) {
+            record.add(n);
+            n = nextNumber_Review(n);
+        }
+        return n == 1;
+    }
+
+    public int nextNumber_Review(int n) {
+        int sum = 0;
+        int bit = 0;
+        while (n != 0) {
+            bit = n % 10;
+            n /= 10;
+            sum += bit * bit;
         }
         return sum;
     }

@@ -42,7 +42,7 @@ public class LeetCode239 {
     }
 
     //复习
-    public static int[] maxSlidingWindow_Review(int[] nums, int k) {
+    public static int[] maxSlidingWindow_Review1(int[] nums, int k) {
         int[] result = new int[nums.length - k + 1];
         Queue<Integer> queue = new LinkedList<>();
         //初始化单调队列
@@ -55,11 +55,38 @@ public class LeetCode239 {
 
         //滑动窗口开始移动
         for (int i = 1; i < nums.length - k + 1; i++) {
-            int remove = nums[i-1];     //移除的元素
-            int add = nums[i+k-1];        //新元素
+            int remove = nums[i - 1];     //移除的元素
+            int add = nums[i + k - 1];        //新元素
 
         }
         return null;
+    }
+
+    //复习-2025-09-29
+    public static int[] maxSlidingWindow_Review2(int[] nums, int k) {
+        int[] res = new int[nums.length - k + 1];
+        Deque<Integer> deque = new LinkedList<>();
+        int idx = 0;        //最终结果的索引值
+        for (int i = 0; i < nums.length; i++) {
+            //如果队列的第一个元素不在滑动窗口范围内，就剔除
+            while (!deque.isEmpty()&&i-k+1>deque.peekFirst()){
+                deque.pollFirst();
+            }
+            //剔除队列中小于新元素的元素
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.pollLast();
+            }
+
+            deque.offerLast(i);
+
+            //只有初始化完成后，才放入结果
+            if(i>=k-1){
+                res[idx++] = nums[deque.peekFirst()];
+            }
+
+        }
+
+        return res;
     }
 
 
