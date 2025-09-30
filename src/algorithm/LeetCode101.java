@@ -48,5 +48,21 @@ public class LeetCode101 {
         return outside && inside;
     }
 
+    //复习2-2025-09-29
+    public boolean isSymmetric_Review2(TreeNode root) {
+        return compare_Review2(root.left,root.right);
+    }
+
+    public boolean compare_Review2(TreeNode left, TreeNode right) {
+        if (left == null && right != null) return false;
+        else if (left != null && right == null) return false;
+        else if (left == null && right == null) return true;
+        else if (left.val != right.val) return false;
+
+        boolean outside = compare_Review2(left.left, right.right);
+        boolean inside = compare_Review2(left.right, right.left);
+
+        return outside && inside;
+    }
 
 }

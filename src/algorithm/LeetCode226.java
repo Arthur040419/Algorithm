@@ -57,4 +57,28 @@ public class LeetCode226 {
 
         return root;
     }
+
+    //复习2-2025-09-29
+    public TreeNode invertTree_Review2(TreeNode root) {
+        invertTreeSolution_Review2(root);
+        return root;
+    }
+
+    public void invertTreeSolution_Review2(TreeNode root){
+        if(root==null){
+            return;
+        }
+
+        //反转左右子树的根节点
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+
+        //反转左子树
+        invertTreeSolution_Review2(root.left);
+        //反转右子树
+        invertTreeSolution_Review2(root.right);
+    }
+
+
 }

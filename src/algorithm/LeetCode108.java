@@ -38,4 +38,14 @@ public class LeetCode108 {
         return root;
     }
 
+    //复习2-2025-09-29
+    private TreeNode findRoot_Review2(int[] nums, int begin, int end) {
+        if (begin + 1 == end) return new TreeNode(nums[begin]);
+        int mid = (begin + end) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        if (begin < mid) root.left = findRoot_Review2(nums, begin, mid);
+        if (mid + 1 < end) root.right = findRoot_Review2(nums, mid + 1, end);
+        return root;
+    }
+
 }

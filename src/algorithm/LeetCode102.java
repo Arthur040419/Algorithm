@@ -105,4 +105,18 @@ public class LeetCode102 {
         solution2_Review(root.right,deep);
     }
 
+    //复习2-2025-09-29
+    private void solution2_Review2(TreeNode root,Integer deep) {
+        if(root==null){
+            return;
+        }
+        deep++;
+        if(res.size()<deep){
+            res.add(new ArrayList<>());
+        }
+        res.get(deep-1).add(root.val);
+        solution2_Review2(root.left,deep);
+        solution2_Review2(root.right,deep);
+    }
+
 }
