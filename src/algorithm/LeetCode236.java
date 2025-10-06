@@ -59,4 +59,30 @@ public class LeetCode236 {
         return leftRes;
 
     }
+
+    //复习-2025-09-29
+    public TreeNode lowestCommonAncestor_Review(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode leftRes = null;
+        TreeNode rightRes = null;
+
+        if(root.left!=null){
+            leftRes = lowestCommonAncestor_Review(root.left,p,q);
+        }
+
+        if(root.right!=null){
+            rightRes = lowestCommonAncestor_Review(root.right,p,q);
+        }
+
+        if(leftRes!=null&&rightRes!=null){
+            return root;
+        }
+
+        if(root.val==p.val||root.val==q.val){
+            return root;
+        }
+
+        if(leftRes!=null) return leftRes;
+
+        return rightRes;
+    }
 }

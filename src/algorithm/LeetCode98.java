@@ -26,7 +26,7 @@ public class LeetCode98 {
 
     }
 
-    //复习-2025-09-20
+    //复习-2025-09-21
     public boolean isValidBST_Review(TreeNode root) {
         if (root == null) {
             return true;
@@ -41,7 +41,6 @@ public class LeetCode98 {
 
         return left && right;
     }
-
 }
 
 //这个代码存在问题，但是问题还没有找到

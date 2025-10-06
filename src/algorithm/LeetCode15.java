@@ -110,6 +110,41 @@ public class LeetCode15 {
         return result.stream().toList();
     }
 
+    //复习-2025年9月15日
+    public static List<List<Integer>> threeSum_Review2(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        int left = 0;
+        int right = 0;
+        for (int i = 0; i < nums.length; i++) {
+            //去重逻辑
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
+            left = i + 1;
+            right = nums.length - 1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum == 0) {
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    //对元组后面两个数字去重
+                    while (left<right&&nums[left]==nums[left+1]) left++;
+                    while (left<right&&nums[right]==nums[right-1]) right--;
+
+                    //继续寻找新元组
+                    left++;
+                    right--;
+                } else if(sum>0){
+                    right--;
+                }else {
+                    left++;
+                }
+            }
+        }
+        return result;
+    }
+
 
     //复习-2025年6月21日
     public static List<List<Integer>> threeSum_Review(int[] nums) {
@@ -124,7 +159,7 @@ public class LeetCode15 {
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
             left = i + 1;
-            right = nums.length-1;
+            right = nums.length - 1;
 
             //去重
             if (i > 0 && nums[i] == nums[i - 1]) {
@@ -145,8 +180,8 @@ public class LeetCode15 {
                     result.add(list);
 
                     //对left和right也去重
-                    while(left<right&&nums[left]==nums[left+1]) left++;
-                    while (left<right&&nums[right]==nums[right-1]) right--;
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    while (left < right && nums[right] == nums[right - 1]) right--;
                     //继续寻找下一种可能
                     left++;
                     right--;

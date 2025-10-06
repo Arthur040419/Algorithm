@@ -5,7 +5,6 @@ import dataStructure.ListNode;
 
 //234.回文链表
 public class LeetCode234 {
-
     //递归思路的外置指针
     ListNode fontNode;
 

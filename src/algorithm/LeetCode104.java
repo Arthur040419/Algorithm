@@ -35,4 +35,33 @@ public class LeetCode104 {
         return Math.max(leftDepth,rightDepth)+1;
     }
 
+    //复习
+    public int maxDepth_Review(TreeNode root) {
+        return maxDepthSolution_Review(root);
+    }
+
+    public int maxDepthSolution_Review(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int depthLeft = maxDepthSolution_Review(root.left);
+        int depthRight = maxDepthSolution_Review(root.right);
+        return Math.max(depthLeft,depthRight)+1;
+    }
+
+    //复习2-2025-09-29
+    public int maxDepth_Review2(TreeNode root) {
+        return maxDepthSolution_Review2(root);
+    }
+
+    public int maxDepthSolution_Review2(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int leftDepth = maxDepthSolution_Review2(root.left);
+        int rightDepth = maxDepthSolution_Review2(root.right);
+
+        return Math.max(leftDepth,rightDepth)+1;
+    }
+
 }

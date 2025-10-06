@@ -59,4 +59,21 @@ public class LeetCode49 {
 
         return res;
     }
+
+    //复习
+    public List<List<String>> groupAnagrams_Review(String[] strs) {
+        /**
+         * 字母异位词中的字符在排序后结果一定相同，那么就可以将排序后的字符串作为Map的Key值，然后将这些字母异位词放到一个集合中并存入map集合
+         */
+        Map<String,List<String>> map = new HashMap<>();
+        for (String str : strs) {
+            char[] charArray = str.toCharArray();
+            Arrays.sort(charArray);
+            String key = new String(charArray);
+            List<String> values = map.getOrDefault(key, new ArrayList<>());
+            values.add(str);
+            map.put(key,values);
+        }
+        return new ArrayList<>(map.values());
+    }
 }

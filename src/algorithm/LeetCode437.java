@@ -38,24 +38,15 @@ public class LeetCode437 {
         return ret;
     }
 
-    //复习-2025-09-20
-    public int pathSum_Review(TreeNode root, int targetSum) {
-        Map<Long, Integer> map = new HashMap<>();
-        map.put(0L, 1);
-        return dfs_Review(root, 0L, map, targetSum);
-    }
-
-    public int dfs_Review(TreeNode root, long prefix, Map<Long, Integer> map, int targetSum) {
-        if (root == null) {
-            return 0;
-        }
-        int ret = 0;
-        long curPrefix = prefix + root.val;
-        ret += map.getOrDefault(curPrefix - targetSum, 0);
-        map.put(curPrefix, map.getOrDefault(curPrefix, 0) + 1);
-        ret+=dfs_Review(root.left,curPrefix,map,targetSum);
-        ret+=dfs_Review(root.right,curPrefix,map,targetSum);
-        map.put(curPrefix,map.get(curPrefix)-1);
-        return ret;
+    //复习-2025-09-29
+    public int dfs_Review(TreeNode node, HashMap<Long, Integer> prefix, Long curr, int targetSum) {
+        if (node == null) return 0;
+        curr += node.val;
+        int res = prefix.getOrDefault(curr-targetSum, 0);
+        prefix.put(curr, prefix.getOrDefault(curr, 0) + 1);
+        res += dfs_Review(node.left, prefix, curr, targetSum);
+        res += dfs_Review(node.right, prefix, curr, targetSum);
+        prefix.put(curr, prefix.getOrDefault(curr, 0) - 1);
+        return res;
     }
 }
