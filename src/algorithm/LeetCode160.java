@@ -58,6 +58,25 @@ public class LeetCode160 {
         return null;
     }
 
+    //新思路
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        /**
+         * 这个思路其实就是上面采用的思路的一种变形:
+         * headA和headB同时开始遍历，如果headA到达链表末尾就重新让其指向headB，如果headB到达链表末尾，就重新让其指向headA
+         * 就这样一直遍历，知道两个指针指向同一个节点或者都指向null。
+         * 这种思路可以抽象成将两个链表连接到一块，如果两个链表存在相交的情况，那么最终两个指针一定会指向同一个节点
+         */
+
+        ListNode pA = headA;
+        ListNode pB = headB;
+        while (pA != pB) {
+            pA = pA == null ? headB : pA.next;
+            pB = pB == null ? headA : pB.next;
+        }
+        return pA;
+
+    }
+
 
     //复习-2025-09-17
     public ListNode getIntersectionNode_Review2(ListNode headA, ListNode headB) {
@@ -95,12 +114,12 @@ public class LeetCode160 {
                 headA = headA.next;
             }
         } else {
-            for (int i = 0; i < len2-len1; i++) {
+            for (int i = 0; i < len2 - len1; i++) {
                 headB = headB.next;
             }
         }
 
-        while (headA!=headB){
+        while (headA != headB) {
             headA = headA.next;
             headB = headB.next;
         }

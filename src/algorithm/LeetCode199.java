@@ -105,4 +105,23 @@ public class LeetCode199 {
         }
     }
 
+    //复习-2025-09-20
+    public List<Integer> rightSideView_Review(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        getRightView_Review(root,1,result);
+        return result;
+    }
+
+    public void getRightView_Review(TreeNode root,int depth,List<Integer> result){
+        if(root==null){
+            return;
+        }
+        if(depth>result.size()){
+            result.add(root.val);
+        }
+
+        getRightView_Review(root.right,depth+1,result);
+        getRightView_Review(root.left,depth+1,result);
+    }
+
 }

@@ -59,4 +59,30 @@ public class LeetCode105 {
 
         return root;
     }
+
+
+    //复习-2025-09-20
+    public TreeNode buildTree_Review(int[] preorder, int[] inorder) {
+        //将中序遍历放到hashmap集合中，方便查找根节点的位置
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i],i);
+        }
+        return buildTreeWithArray_Review(preorder,inorder,0,preorder.length,0,inorder.length);
+    }
+
+    //包前不包后
+    public TreeNode buildTreeWithArray_Review(int[] preorder,int[] inorder,int preStart,int preEnd,int inStart,int inEnd){
+        if(preStart>=preEnd){
+            return null;
+        }
+        if(preStart+1==preEnd){
+            return new TreeNode(preorder[preStart]);
+        }
+        TreeNode root = new TreeNode(preorder[preStart]);
+        int mid = map.get(preorder[preStart]);
+        int leftTreeLen = mid-inStart;
+        root.left = buildTreeWithArray_Review(preorder,inorder,preStart+1,preStart+1+leftTreeLen,inStart,mid);
+        root.right = buildTreeWithArray_Review(preorder,inorder,preStart+1+leftTreeLen,preEnd,mid+1,inEnd);
+        return root;
+    }
 }

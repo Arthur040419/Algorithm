@@ -54,6 +54,25 @@ public class LeetCode138 {
 
     }
 
+    //复习-2025-09-17
+    public Node copyRandomList_Review(Node head) {
+        if(head==null){
+            return null;
+        }
+        if(map.containsKey(head)){
+            return map.get(head);
+        }
+
+        Node newHead = new Node(head.val);
+        map.put(head,newHead);
+        //拷贝下一个节点
+        newHead.next = copyRandomList_Review(head.next);
+        //拷贝随机节点
+        newHead.next = copyRandomList_Review(head.random);
+
+        return newHead;
+    }
+
 
 }
 

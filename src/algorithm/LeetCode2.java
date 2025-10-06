@@ -19,10 +19,10 @@ public class LeetCode2 {
         while (l1 != null || l2 != null) {
             int num1 = l1 == null ? 0 : l1.val;
             int num2 = l2 == null ? 0 : l2.val;
-            if(l1!=null){
+            if (l1 != null) {
                 l1 = l1.next;
             }
-            if(l2!=null){
+            if (l2 != null) {
                 l2 = l2.next;
             }
 
@@ -35,13 +35,44 @@ public class LeetCode2 {
                 tail = tail.next;
             }
 
-            carry = sum/10;
+            carry = sum / 10;
 
         }
-        if(carry>0){
+        if (carry > 0) {
             tail.next = new ListNode(carry);
         }
 
+        return head;
+    }
+
+    //复习-2025-09-17
+    public ListNode addTwoNumbers_Review(ListNode l1, ListNode l2) {
+        ListNode head = null;
+        ListNode tail = null;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int num1 = l1 != null ? l1.val : 0;
+            int num2 = l2 != null ? l2.val : 0;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+            int sum = (num1 + num2 + carry) % 10;
+            carry = (num1 + num2 + carry) / 10;
+
+            if (head == null) {
+                head = new ListNode(sum);
+                tail = head;
+            } else {
+                tail.next = new ListNode(sum);
+                tail = tail.next;
+            }
+        }
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
+        }
         return head;
     }
 

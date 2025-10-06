@@ -5,8 +5,7 @@ import dataStructure.ListNode;
 
 //234.回文链表
 public class LeetCode234 {
-
-    //递归做法
+    //递归思路的外置指针
     ListNode fontNode;
 
     public boolean isPalindrome(ListNode head) {
@@ -52,23 +51,28 @@ public class LeetCode234 {
         return preNode;
     }
 
-    //复习-2025-09-17  新思路-递归
-    public boolean isPalindrome_Review(ListNode head) {
+
+    //递归思路
+    public boolean isPalindrome2(ListNode head) {
+        //初始化外置指针
         fontNode = head;
-        return isPalindromeCheck(head);
+        return checkCurNode(head);
     }
 
-    public boolean isPalindromeCheck(ListNode node) {
-        if (node != null) {
-            if(!isPalindromeCheck(node.next)){
+    //通过递归遍历节点，让节点达到链表最后一个位置，然后往回逐个与外置指针比较，从而判断是否是回文链表
+    public boolean checkCurNode(ListNode head){
+        if(head!=null){
+            //先递归检查下一个节点
+            if(!checkCurNode(head.next)){
                 return false;
             }
-            if(node.val!=fontNode.val){
+            //再检查当前节点
+            if(head.val!= fontNode.val){
                 return false;
             }
-
             fontNode = fontNode.next;
         }
+        //到达最末尾的第一个空节点，直接返回true
         return true;
     }
 
