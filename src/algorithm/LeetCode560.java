@@ -38,4 +38,19 @@ public class LeetCode560 {
 
         return result;
     }
+
+    //复习
+    public static int subarraySum_Review(int[] nums, int k) {
+        int curPre = 0;
+        int ans = 0;
+        Map<Integer,Integer> map = new HashMap<>();     //存储同一个前缀和出现的次数
+        map.put(0,1);       //这个很重要
+        for (int i = 0; i < nums.length; i++) {
+            curPre += nums[i];
+            ans += map.getOrDefault(curPre-k,0);
+            map.put(curPre,map.getOrDefault(curPre,0)+1);
+        }
+        return ans;
+    }
+
 }

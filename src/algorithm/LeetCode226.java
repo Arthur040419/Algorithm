@@ -37,4 +37,48 @@ public class LeetCode226 {
         invertSolution1(root.left);
         invertSolution1(root.right);
     }
+
+    //复习-2025-09-18
+    public TreeNode invertTree_Review(TreeNode root) {
+        if(root==null) return root;
+        return invertTreeSolution_Review(root);
+    }
+
+    public TreeNode invertTreeSolution_Review(TreeNode root){
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        if(root.left!=null){
+            invertTreeSolution_Review(root.left);
+        }
+        if(root.right!=null){
+            invertTreeSolution_Review(root.right);
+        }
+
+        return root;
+    }
+
+    //复习2-2025-09-29
+    public TreeNode invertTree_Review2(TreeNode root) {
+        invertTreeSolution_Review2(root);
+        return root;
+    }
+
+    public void invertTreeSolution_Review2(TreeNode root){
+        if(root==null){
+            return;
+        }
+
+        //反转左右子树的根节点
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+
+        //反转左子树
+        invertTreeSolution_Review2(root.left);
+        //反转右子树
+        invertTreeSolution_Review2(root.right);
+    }
+
+
 }

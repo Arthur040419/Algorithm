@@ -49,4 +49,18 @@ class Solution {
         }
         return preNode;
     }
+
+    //复习-2025-09-17
+    public ListNode reverseList_Review(ListNode head){
+        ListNode curNode = head;
+        ListNode preNode = null;
+        ListNode tmp = null;
+        while (curNode!=null){
+            tmp = curNode.next;
+            curNode.next = preNode;
+            preNode = curNode;
+            curNode = tmp;
+        }
+        return preNode;
+    }
 }

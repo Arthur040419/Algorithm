@@ -59,8 +59,23 @@ public class LeetCode160 {
     }
 
 
+    //复习-2025-09-17
+    public ListNode getIntersectionNode_Review2(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode curA = headA;
+        ListNode curB = headB;
+        while (curA != curB) {
+            curA = curA == null ? headB : curA.next;
+            curB = curB == null ?headA:curB.next;
+        }
+        return curA;
+    }
+
+
     //复习
-    public ListNode getIntersectionNode_Review(ListNode headA, ListNode headB) {
+    public ListNode getIntersectionNode_Review1(ListNode headA, ListNode headB) {
         //计算两个链表的长度
         int len1 = 0;
         int len2 = 0;

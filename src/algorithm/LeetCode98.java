@@ -25,6 +25,21 @@ public class LeetCode98 {
         return left && right;
 
     }
+
+    //复习-2025-09-21
+    public boolean isValidBST_Review(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        boolean left = isValidBST_Review(root.left);
+        if (max != null && max.val >= root.val) {
+            return false;
+        }
+        max = root;
+        boolean right = isValidBST_Review(root.right);
+
+        return left && right;
+    }
 }
 
 //这个代码存在问题，但是问题还没有找到

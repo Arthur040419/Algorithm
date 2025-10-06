@@ -12,18 +12,18 @@ public class LeetCode283 {
 
         int slow = 0;
         int fast = 0;
-        while (fast<nums.length){
+        while (fast < nums.length) {
             //这里也不能大于0，因为元素可能是小于0的
             //if(nums[fast]>0){
-            if(nums[fast]!=0){
-                swap(slow,fast,nums);
+            if (nums[fast] != 0) {
+                swap(slow, fast, nums);
                 slow++;
             }
             fast++;
         }
     }
 
-    public void swap(int slow,int fast,int[] target){
+    public void swap(int slow, int fast, int[] target) {
         int tmp = target[slow];
         target[slow] = target[fast];
         //这里不能直接等于0，因为slow和fast可能指向的是同一个位置
@@ -63,5 +63,24 @@ public class LeetCode283 {
                 nums[fast] = 0;
             }
         }
+    }
+
+    //复习
+    public void moveZeroes_Review(int[] nums) {
+        int slow = 0;
+        int fast = 0;
+        while (fast < nums.length) {
+            if (nums[fast] != 0) {
+                swap_Review(slow, fast, nums);
+                slow++;
+            }
+            fast++;
+        }
+    }
+
+    public void swap_Review(int slow,int fast,int[] nums){
+        int tmp = nums[slow];
+        nums[slow] = nums[fast];
+        nums[fast] = tmp;
     }
 }
