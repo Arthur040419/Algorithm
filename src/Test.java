@@ -2,9 +2,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Test {
-    public static void main(String[] args) throws Exception{
-
-    }
+    public static void main(String[] args) throws Exception{}
 
     public static String getTeam(String students){
         int start = 0;
@@ -30,7 +28,6 @@ public class Test {
         }
         return students.substring(start,start+maxLen);
     }
-}
 
 class Father{
 

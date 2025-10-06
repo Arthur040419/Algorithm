@@ -38,8 +38,9 @@ public class LeetCode3 {
         return result;
     }
 
+
     //复习-2025-09-15
-    public int lengthOfLongestSubstring_Review(String s) {
+    public int lengthOfLongestSubstring_Review2(String s) {
         if(s==null||s.isEmpty()){
             return 0;
         }
@@ -58,5 +59,30 @@ public class LeetCode3 {
             left++;
         }
         return maxLen;
+    }
+
+    //复习
+    public int lengthOfLongestSubstring_review(String s) {
+        if (s.length() <= 1) return s.length();
+        //子串起点
+        int left = 0;
+        //子串终点
+        int right = 1;
+        int result = 0;
+
+        Set<Character> set = new HashSet<>();
+        set.add(s.charAt(left));
+        for (; left < s.length(); left++) {
+            while (right < s.length() && !set.contains(s.charAt(right))) {
+                set.add(s.charAt(right));
+                right++;
+                //这个操作不能放这里，放这里非常耗时，放循坏外耗时能从12ms降到6ms
+                //result = Math.max(result, right - left);
+            }
+            result = Math.max(result, right - left);
+            set.remove(s.charAt(left));
+        }
+
+        return result;
     }
 }

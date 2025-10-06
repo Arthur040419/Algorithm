@@ -58,8 +58,9 @@ public class LeetCode160 {
         return null;
     }
 
+
     //复习-2025-09-17
-    public ListNode getIntersectionNode_Review(ListNode headA, ListNode headB) {
+    public ListNode getIntersectionNode_Review2(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) {
             return null;
         }
@@ -72,4 +73,38 @@ public class LeetCode160 {
         return curA;
     }
 
+
+    //复习
+    public ListNode getIntersectionNode_Review1(ListNode headA, ListNode headB) {
+        //计算两个链表的长度
+        int len1 = 0;
+        int len2 = 0;
+        ListNode tmp = headA;
+        while (tmp != null) {
+            len1++;
+            tmp = tmp.next;
+        }
+        tmp = headB;
+        while (tmp != null) {
+            len2++;
+            tmp = tmp.next;
+        }
+
+        if (len1 > len2) {
+            for (int i = 0; i < len1 - len2; i++) {
+                headA = headA.next;
+            }
+        } else {
+            for (int i = 0; i < len2-len1; i++) {
+                headB = headB.next;
+            }
+        }
+
+        while (headA!=headB){
+            headA = headA.next;
+            headB = headB.next;
+        }
+
+        return headA;
+    }
 }

@@ -3,6 +3,7 @@ package algorithm;
 import java.util.HashMap;
 import java.util.Map;
 
+
 //146.LRU缓存
 public class LeetCode146 {
 
@@ -43,7 +44,6 @@ class LRUCache{
             moveToHead(dLinkedNode);
             return dLinkedNode.value;
         }
-
         return -1;
     }
 
