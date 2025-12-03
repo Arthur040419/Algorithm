@@ -3,32 +3,34 @@ import java.util.stream.Collectors;
 
 public class Test {
 
-    public static void main(String[] args) throws Exception{}
+    public static void main(String[] args) throws Exception {
+    }
 
-    public static String getTeam(String students){
+    public static String getTeam(String students) {
         int start = 0;
         int maxLen = 0;
         int curLen = 0;
         Set<Character> set = new HashSet<>();
         int left = 0;
         int right = 0;
-        while(right<students.length()){
-            if(!set.contains(students.charAt(right))){
+        while (right < students.length()) {
+            if (!set.contains(students.charAt(right))) {
                 set.add(students.charAt(right));
                 curLen++;
-                if(curLen>maxLen){
+                if (curLen > maxLen) {
                     start = left;
                     maxLen = curLen;
                 }
                 right++;
-            }else{
+            } else {
                 set.remove(students.charAt(left));
                 left++;
                 curLen--;
             }
         }
-        return students.substring(start,start+maxLen);
+        return students.substring(start, start + maxLen);
     }
+}
 
 class Father{
 

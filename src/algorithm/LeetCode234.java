@@ -76,4 +76,19 @@ public class LeetCode234 {
         return true;
     }
 
+    //递归法复习-2025-10-24
+    public boolean checkCurNode_Review(ListNode head){
+        if(head!=null){
+            if(!checkCurNode_Review(head.next)){
+                return false;
+            }
+            if(head.val!= fontNode.val){
+                return false;
+            }
+            fontNode = fontNode.next;
+        }
+        return true;
+    }
+
+
 }

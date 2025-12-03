@@ -1,11 +1,19 @@
 package algorithm;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 //56.合并区间
 public class LeetCode56 {
+
+    public static void main(String[] args) {
+        merge_Review(new int[][]{
+                {1,3},
+                {2,6},
+                {8,10},
+                {15,18}
+        });
+    }
+
     public int[][] merge(int[][] intervals) {
         /**
          * 思路：
@@ -17,10 +25,10 @@ public class LeetCode56 {
          */
 
         //将区间按左边界排序
-        Arrays.sort(intervals,(o1,o2)->{
+        Arrays.sort(intervals, (o1, o2) -> {
             //如果左边界相等，就按右边界从小到大排序
-            if(o1[0]==o2[0]) return o1[1]-o2[1];
-            return o1[0]-o2[0];
+            if (o1[0] == o2[0]) return o1[1] - o2[1];
+            return o1[0] - o2[0];
         });
 
         //初始化合并区间的右边界
@@ -30,20 +38,46 @@ public class LeetCode56 {
         List<int[]> result = new ArrayList<>();
         //依次遍历每一个区间
         for (int i = 1; i < intervals.length; i++) {
-            if(intervals[i][0]<=cover){
+            if (intervals[i][0] <= cover) {
                 //出现重叠
-                cover=Math.max(cover,intervals[i][1]);
-            }else {
+                cover = Math.max(cover, intervals[i][1]);
+            } else {
                 //没有出现重叠
-                result.add(new int[]{start,cover});
-                start=intervals[i][0];
-                cover=intervals[i][1];
+                result.add(new int[]{start, cover});
+                start = intervals[i][0];
+                cover = intervals[i][1];
             }
         }
         //特殊处理最后一个区间
-        result.add(new int[]{start,cover});
+        result.add(new int[]{start, cover});
 
 
         return result.toArray(new int[result.size()][]);
+    }
+
+    //复习-2025-10-06
+    public static int[][] merge_Review(int[][] intervals) {
+        Arrays.sort(intervals, (o1, o2) -> {
+            if (o1[0] == o2[0]) return o1[1] - o2[1];
+            return o1[0] - o2[0];
+        });
+        List<int[]> res = new ArrayList<>();
+
+        //当前合并中的区间
+        int[] curMerge = new int[2];
+        curMerge[0] = intervals[0][0];
+        curMerge[1] = intervals[0][1];
+
+        for (int i = 1; i < intervals.length; i++) {
+            if(intervals[i][0]>curMerge[1]){
+                res.add(new int[]{curMerge[0],curMerge[1]});
+                curMerge[0] = intervals[i][0];
+                curMerge[1] = intervals[i][1];
+            }else {
+                curMerge[1] = Math.max(curMerge[1],intervals[i][1]);
+            }
+        }
+        res.add(curMerge);
+        return res.toArray(new int[0][0]);
     }
 }

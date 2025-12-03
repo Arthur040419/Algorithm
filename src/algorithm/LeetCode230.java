@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //230.二叉搜索树中第k小的元素_复习
-public class LeetCode230_Review {
+ class LeetCode230_Review {
 
     public int kthSmallest(TreeNode root, int k) {
         int count = getCount(root.left);

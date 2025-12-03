@@ -1,5 +1,6 @@
 package algorithm;
 
+
 import dataStructure.TreeNode;
 
 //236.二叉树的最近公共祖先
@@ -40,13 +41,13 @@ public class LeetCode236 {
     }
 
     //复习-2025-09-20
-    public TreeNode lowestCommonAncestor_Review(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor_Review1(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
         }
 
-        TreeNode leftRes = lowestCommonAncestor_Review(root.left, p, q);
-        TreeNode rightRes = lowestCommonAncestor_Review(root.right, p, q);
+        TreeNode leftRes = lowestCommonAncestor_Review1(root.left, p, q);
+        TreeNode rightRes = lowestCommonAncestor_Review1(root.right, p, q);
         if (leftRes != null && rightRes != null) {
             return root;
         }
@@ -61,16 +62,16 @@ public class LeetCode236 {
     }
 
     //复习-2025-09-29
-    public TreeNode lowestCommonAncestor_Review(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor_Review2(TreeNode root, TreeNode p, TreeNode q) {
         TreeNode leftRes = null;
         TreeNode rightRes = null;
 
         if(root.left!=null){
-            leftRes = lowestCommonAncestor_Review(root.left,p,q);
+            leftRes = lowestCommonAncestor_Review2(root.left,p,q);
         }
 
         if(root.right!=null){
-            rightRes = lowestCommonAncestor_Review(root.right,p,q);
+            rightRes = lowestCommonAncestor_Review2(root.right,p,q);
         }
 
         if(leftRes!=null&&rightRes!=null){

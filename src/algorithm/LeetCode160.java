@@ -87,7 +87,7 @@ public class LeetCode160 {
         ListNode curB = headB;
         while (curA != curB) {
             curA = curA == null ? headB : curA.next;
-            curB = curB == null ?headA:curB.next;
+            curB = curB == null ? headA : curB.next;
         }
         return curA;
     }
@@ -126,4 +126,23 @@ public class LeetCode160 {
 
         return headA;
     }
+
+
+    //复习-2025-10-24
+    public ListNode getIntersectionNode_Review3(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+
+        ListNode indexA = headA;
+        ListNode indexB = headB;
+        while (indexA != indexB) {
+            indexA = indexA == null ? headB : indexA.next;
+            indexB = indexB == null ? headA : indexB.next;
+
+        }
+        return indexA;
+    }
+
+
 }

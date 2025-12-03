@@ -64,4 +64,35 @@ public class LeetCode142 {
         }
         return node1;
     }
+
+
+    //复习-2025-10-24
+    public ListNode detectCycle_Review2(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && slow != null) {
+            fast = fast.next;
+            if (fast != null) {
+                fast = fast.next;
+            } else {
+                return null;
+            }
+            slow = slow.next;
+            if (fast == slow) {
+                break;
+            }
+        }
+
+        if(fast==null||slow==null){
+            return null;
+        }
+
+        //确定环入口
+        ListNode start = head;
+        while (fast != start) {
+            fast = fast.next;
+            start = start.next;
+        }
+        return start;
+    }
 }

@@ -1,5 +1,6 @@
 package algorithm;
 
+import java.sql.Array;
 import java.util.*;
 
 //15.三数之和
@@ -24,7 +25,7 @@ public class LeetCode15 {
             //去除重复情况
             //去重逻辑需要学习一下，如果元组的第一个数相等，在寻找元组后面两个数时由于寻找范围就是在nums这个数组中，因此符合题意的元组肯定也是一样的
             //因此只要第一个元素重复了，就说明元组也会重复
-            //而这里是判断nums[i]==nums[i--]而不是nums[i]==nums[i++]
+            //而这里是判断nums[i]==nums[i-1]而不是nums[i]==nums[i+1]
             //这是因为如果是后面的判断方式，会导致元组内部中不能出现重复元素，但是元组内出现重复元素是允许的，比如元组：-1,-1,2
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
@@ -56,6 +57,58 @@ public class LeetCode15 {
         }
 
         return result;
+    }
+
+
+    //复习-2025-11-13
+    public static List<List<Integer>> threeSum_Review3(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        Arrays.sort(nums);
+        if (nums[0] > 0) {
+            return Collections.emptyList();
+        }
+
+        int left = 0;
+        int right = 0;
+        Set<Integer> set = new HashSet<>();         //set用来去重
+        for (int i = 0; i < nums.length - 2; i++) {
+            //第一种去重逻辑，用set集合记录已经用过的第一位数
+//            if (set.contains(nums[i])) {
+//                continue;
+//            }
+
+            //第二种去重逻辑
+            //去重逻辑需要学习一下，如果元组的第一个数相等，在寻找元组后面两个数时由于寻找范围就是在nums这个数组中，因此符合题意的元组肯定也是一样的
+            //因此只要第一个元素重复了，就说明元组也会重复
+            //而这里是判断nums[i]==nums[i-1]而不是nums[i]==nums[i+1]
+            //这是因为如果是后面的判断方式，会导致元组内部中不能出现重复元素，但是元组内出现重复元素是允许的，比如元组：-1,-1,2
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
+            left = i + 1;
+            right = nums.length - 1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum > 0) {
+                    right--;
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    set.add(nums[i]);
+                    res.add(Arrays.asList(nums[i], nums[left], nums[right]));
+
+                    //对后面两个数字去重
+                    while (left < right && nums[left + 1] == nums[left]) left++;
+                    while (left < right && nums[right - 1] == nums[right]) right--;
+
+                    left++;
+                    right--;
+                }
+            }
+        }
+        return res;
     }
 
 
@@ -129,15 +182,15 @@ public class LeetCode15 {
                 if (sum == 0) {
                     result.add(Arrays.asList(nums[i], nums[left], nums[right]));
                     //对元组后面两个数字去重
-                    while (left<right&&nums[left]==nums[left+1]) left++;
-                    while (left<right&&nums[right]==nums[right-1]) right--;
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    while (left < right && nums[right] == nums[right - 1]) right--;
 
                     //继续寻找新元组
                     left++;
                     right--;
-                } else if(sum>0){
+                } else if (sum > 0) {
                     right--;
-                }else {
+                } else {
                     left++;
                 }
             }

@@ -13,42 +13,37 @@ public class LeetCode54 {
          *
          */
 
-        //标记矩阵
-        boolean[][] mark = new boolean[matrix.length][matrix[0].length];
-        //定义矩阵边界
-        int row = matrix.length;
-        int col = matrix[0].length;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        List<Integer> res = new ArrayList<>();
 
-        //四个方向
-        int[][] directions = new int[4][2];
-        //右
-        directions[0][0] = 0;
-        directions[0][1] = 1;
-        //下
-        directions[1][0] = 1;
-        directions[1][1] = 0;
-        //左
-        directions[2][0] = 0;
-        directions[2][1] = -1;
-        //上
-        directions[3][0] = -1;
-        directions[3][1] = 0;
+        boolean[][] visited = new boolean[m][n];
+        //定义方向
+        int[][] directions = {
+                {0, 1},  //右
+                {1, 0},  //下
+                {0, -1}, //左
+                {-1, 0}  //上
+        };
 
-        //开始模拟
+        int i = 1;
+        int direction = 0;      //当前方向，开始为右
         int x = 0;
         int y = 0;
-        int direction = 0;
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < row * col; i++) {
-            result.add(matrix[y][x]);
-            mark[y][x] = true;
-            x += directions[direction][0];
-            y += directions[direction][1];
-            if (mark[y][x] || 0 > x || x >= col || 0 > y || y >= row) {
+        while (i <= m * n) {
+            visited[x][y] = true;
+            res.add(matrix[x][y]);
+            i++;
+            int xx = x + directions[direction][0];
+            int yy = y + directions[direction][1];
+            if (xx < 0 || yy < 0 || xx >= m || yy >= n || visited[xx][yy]) {
                 direction = (direction + 1) % 4;
+                xx = x + directions[direction][0];
+                yy = y + directions[direction][1];
             }
+            x = xx;
+            y = yy;
         }
-
-        return null;
+        return res;
     }
 }

@@ -1,7 +1,7 @@
 package algorithm;
 
 //215.数组中的第K个最大元素_Review
-public class LeetCode215_Review {
+ class LeetCode215_Review {
 
     public static void main(String[] args) {
         int[] test = {3,2,1,5,6,4};

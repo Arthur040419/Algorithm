@@ -76,4 +76,35 @@ public class LeetCode2 {
         return head;
     }
 
+    //复习-2025-10-24
+    public ListNode addTwoNumbers_Review2(ListNode l1, ListNode l2) {
+        ListNode cur1 = l1;
+        ListNode cur2 = l2;
+        ListNode dummyHead = new ListNode();
+        ListNode res = dummyHead;
+        int carry = 0;
+        int tmp = 0;
+        while (l1 != null || l2 != null) {
+            int n1 = l1 == null ? 0 : l1.val;
+            int n2 = l2 == null ? 0 : l2.val;
+
+            tmp = n1 + n2 + carry;
+            carry = tmp / 10;
+            tmp %= 10;
+            res.next = new ListNode(tmp);
+            res = res.next;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+
+        if (carry != 0) {
+            res.next = new ListNode(carry);
+        }
+        return dummyHead.next;
+    }
+
 }

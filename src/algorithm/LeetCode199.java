@@ -4,12 +4,12 @@ import dataStructure.TreeNode;
 import java.util.*;
 
 //199.二叉树的右视图_复习
-public class LeetCode199_Review {
+ class LeetCode199_Review {
     List<Integer> res = new ArrayList<>();
 
     //复习-2025-09-29
     public List<Integer> rightSideView(TreeNode root) {
-        solution(root,1);
+        solution(root, 1);
         return res;
     }
 
@@ -20,6 +20,8 @@ public class LeetCode199_Review {
         }
         solution(root.right, depth + 1);
         solution(root.left, depth + 1);
+    }
+}
 
 //199.二叉树的右视图
 public class LeetCode199 {

@@ -18,7 +18,7 @@ public class LeetCode141 {
             if (fast.next != null) {
                 //这里注意要是没有上面的if判断，可能会产生空指针。
                 fast = fast.next.next;
-            }else {
+            } else {
                 return false;
             }
             slow = slow.next;
@@ -28,5 +28,25 @@ public class LeetCode141 {
         }
         return false;
     }
+
+    //复习-2025-10-24
+    public boolean hasCycle_Review1(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && slow != null) {
+            fast = fast.next;
+            if (fast != null) {
+                fast = fast.next;
+            } else {
+                return false;
+            }
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
